@@ -12,7 +12,7 @@ class Alien(Sprite):
         self.screen_rect = self.screen.get_rect()
         
         # Load the ship image and get its rect
-        self.image = pygame.image.load('C:/Users/LENOVO/Desktop/python_work/project alien/images/ufo1.bmp')
+        self.image = pygame.image.load('C:/Users/LENOVO/Desktop/python_work/alien-invasion-game/images/ufo1.bmp')
         self.image = pygame.transform.scale(self.image, (50, 30))
         self.rect = self.image.get_rect()
 

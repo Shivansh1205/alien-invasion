@@ -10,7 +10,7 @@ class Ship:
         self.settings = ai_game.settings
 
         """load the ship and get its rect"""
-        self.image = pygame.image.load('C:/Users/LENOVO/Desktop/python_work/project alien/ship1.bmp')
+        self.image = pygame.image.load('C:/Users/LENOVO/Desktop/python_work/alien-invasion-game/ship1.bmp')
         pygame.transform.scale(self.image, (50,30))
         self.rect = self.image.get_rect()
         
