@@ -161,6 +161,7 @@ class AlienInvasion:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
+                self.stats.reset_stats
 
     def _check_play_button(self, mouse_pos):
         """Check if the postion of mouse cursor overlaps with the play button """
