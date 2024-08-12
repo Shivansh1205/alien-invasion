@@ -6,6 +6,7 @@ from settings import Settings
 from ship import Ship
 from bullets import Bullet
 from alien import Alien
+from button import Button
 
 class AlienInvasion:
     """overall class to manage game assests and behaviour"""
@@ -25,6 +26,7 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self.stats = Gamestats(self)
+        self.play_button = Button(self , "PLay")
 
     def run_game(self):
         self._create_fleet()
@@ -155,7 +157,16 @@ class AlienInvasion:
                
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
+    def _check_play_button(self, mouse_pos):
+        """Check if the postion of mouse cursor overlaps with the play button """
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.game_active = True
+    
     def _check_keydown_events(self,event):
          """Respond to key presses"""
          if event.key == pygame.K_RIGHT:
@@ -191,6 +202,10 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.Draw_bullet()
         self.aliens.draw(self.screen)
+
+        # Draw the play button if the game is in inactive state
+        if not self.stats.game_active:
+            self.play_button.draw_button()
         #make the most recently closed screen to be visible
         pygame.display.flip()
             
