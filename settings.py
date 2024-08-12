@@ -1,5 +1,5 @@
 class Settings:
-    """a class to store all basic settings of aliens.py"""
+    """Initialize game's static settings"""
 
     def __init__(self):
         self.bg_color = (10,10,10)
@@ -20,3 +20,7 @@ class Settings:
         # fleet direct of 1 represents right; while -1 represents left
         self.fleet_direction = 1
         self.ship_limit = 3
+
+        #how quickly the game speed's up 
+        self.speedup_scale = 1.1
+        self.initialize_dynamic_settings()
