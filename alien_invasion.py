@@ -95,6 +95,7 @@ class AlienInvasion:
 
         else:
             self.stats.game_active = False
+            pygame.mouse.set_visible(True)
 
     def _check_aliens_bottom(self):
         """Check if any aliens have reached the bottom of the screen."""
@@ -161,13 +162,23 @@ class AlienInvasion:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
-                self.stats.reset_stats
-
+                
     def _check_play_button(self, mouse_pos):
         """Check if the postion of mouse cursor overlaps with the play button """
-        if self.play_button.rect.collidepoint(mouse_pos):
-            self.stats.game_active = True
-    
+        if self.play_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
+            self.stats.reset_stats
+
+            #Hide mouse cursor 
+            pygame.mouse.set_visible(False)
+
+            #GEt rid of remaining aliens and bullets
+            self.aliens.empty()
+            self.bullets.empty()
+
+            #Create a new fleet and center the ship 
+            self._create_fleet()
+            self.ship.center_ship()
+
     def _check_keydown_events(self,event):
          """Respond to key presses"""
          if event.key == pygame.K_RIGHT:
