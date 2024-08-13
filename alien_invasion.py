@@ -171,6 +171,9 @@ class AlienInvasion:
             self.settings.initialize_dynamic_settings()
             self.stats.reset_stats
 
+            # put the game in active state
+            self.stats.game_active = True
+
             #Hide mouse cursor 
             pygame.mouse.set_visible(False)
 
