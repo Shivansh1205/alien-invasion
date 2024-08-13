@@ -7,6 +7,7 @@ from ship import Ship
 from bullets import Bullet
 from alien import Alien
 from button import Button
+from scoreboard import Scoreboard
 
 class AlienInvasion:
     """overall class to manage game assests and behaviour"""
@@ -27,6 +28,7 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         self.stats = Gamestats(self)
         self.play_button = Button(self , "PLay")
+        self.sb = Scoreboard(self)
 
     def run_game(self):
         self._create_fleet()
@@ -222,9 +224,13 @@ class AlienInvasion:
             bullet.Draw_bullet()
         self.aliens.draw(self.screen)
 
+        # DRaw score board on the screen
+        self.sb.show_score()
+
         # Draw the play button if the game is in inactive state
         if not self.stats.game_active:
             self.play_button.draw_button()
+
         #make the most recently closed screen to be visible
         pygame.display.flip()
             
