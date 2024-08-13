@@ -59,6 +59,7 @@ class AlienInvasion:
             # Destroy existing bullets ad create new fleet
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
 
     def _update_aliens(self):
         """ 
@@ -166,6 +167,8 @@ class AlienInvasion:
     def _check_play_button(self, mouse_pos):
         """Check if the postion of mouse cursor overlaps with the play button """
         if self.play_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
+            #reset game settings when play button is pressed again 
+            self.settings.initialize_dynamic_settings()
             self.stats.reset_stats
 
             #Hide mouse cursor 
@@ -178,6 +181,7 @@ class AlienInvasion:
             #Create a new fleet and center the ship 
             self._create_fleet()
             self.ship.center_ship()
+
 
     def _check_keydown_events(self,event):
          """Respond to key presses"""
