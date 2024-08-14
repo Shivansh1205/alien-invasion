@@ -62,6 +62,10 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+
+            # Increase level.
+            self.stats.level += 1
+            self.sb.prep_level()
         
         # increase score in collsions
         if collisions:
@@ -91,6 +95,7 @@ class AlienInvasion:
         
             #decrement in ships left 
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
         
             # Get rid of remining aliens and bullets
             self.aliens.empty()
@@ -195,6 +200,8 @@ class AlienInvasion:
             self.ship.center_ship()
 
             self.sb.prep_score()
+            self.sb.prep_level()
+            self.sb.prep_ships()
 
     def _check_keydown_events(self,event):
          """Respond to key presses"""
