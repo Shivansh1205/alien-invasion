@@ -62,6 +62,13 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+        
+        # increase score in collsions
+        if collisions:
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
+            self.sb.prep_score()
+            self.sb.check_high_score()
 
     def _update_aliens(self):
         """ 
@@ -187,6 +194,7 @@ class AlienInvasion:
             self._create_fleet()
             self.ship.center_ship()
 
+            self.sb.prep_score()
 
     def _check_keydown_events(self,event):
          """Respond to key presses"""
